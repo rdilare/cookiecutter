@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="{{cookiecutter.bin_number}}">
+    <static>false</static>
+    <link name="bin">
+      <inertial>
+        <mass>0.5</mass>
+        <inertia> <!-- inertias are tricky to compute -->
+          <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+          <ixx>0.025</ixx>       <!-- for a box: ixx = 0.025 * mass * (y*y + z*z) -->
+          <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.025</iyy>       <!-- for a box: iyy = 0.025 * mass * (x*x + z*z) -->
+          <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.025</izz>       <!-- for a box: izz = 0.025 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+      <collision name="bin">
+        <geometry>
+          <box>
+            <size> 0.4 0.4 0.4 </size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="{{cookiecutter.bin_number}}">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://{{cookiecutter.bin_number}}/meshes/bin.dae</uri>
+          </mesh> 
+        </geometry>
+        <material>
+          <script>
+            <uri>model://{{cookiecutter.bin_number}}/materials/scripts/model.material</uri>
+            <name>{{cookiecutter.bin_number}}</name>
+          </script>
+        </material>  
+       </visual>
+    </link>
+  </model>
+</sdf>
